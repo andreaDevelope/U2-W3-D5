@@ -1,0 +1,118 @@
+@import "./scss/functions";
+@import "./scss/variables";
+
+$nav-pr: #131921;
+$nav-btn: #febd69;
+$white: #ffffff;
+$bg1: #fd5902;
+$bg2: #0264f9;
+$bg3: #509f46;
+
+$new-them-colors: (
+  "nav-pr": $nav-pr,
+  "nav-btn": $nav-btn,
+  "white": $white,
+  "bg-1": $bg1,
+  "bg-2": $bg2,
+  "bg-3": $bg3,
+);
+
+$theme-colors: map-merge($theme-colors, $new-them-colors);
+@import "./scss/bootstrap";
+
+// inzio regole CSS
+
+#form-nav {
+  @media screen and (max-width: 800px) {
+    flex-grow: -1;
+  }
+}
+
+.col-12 {
+  img {
+    width: 100%;
+  }
+}
+
+// carosello
+.carousel {
+  position: relative;
+  overflow: hidden;
+}
+
+.carousel-inner {
+  display: flex;
+  overflow: hidden;
+  scroll-behavior: smooth;
+  white-space: nowrap;
+}
+
+.carousel-item {
+  display: flex;
+  flex-wrap: nowrap;
+}
+
+.carousel-item img {
+  flex: 0 0 auto;
+  width: 30%;
+  height: auto;
+  margin-inline: 10px;
+  cursor: pointer;
+
+  @media screen and (max-width: 750px) {
+    width: 30%;
+  }
+  @media screen and (max-width: 500px) {
+    width: 50%;
+  }
+}
+
+.carousel-control-prev,
+.carousel-control-next {
+  top: 50%;
+  transform: translateY(-50%);
+  color: $white;
+
+  &:hover {
+    background-color: rgba(100, 100, 100, 0) !important;
+  }
+}
+
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+  background-color: $nav-pr;
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+}
+
+.carousel-slide {
+  background-color: transparent !important;
+  background-color: rgba(100, 100, 100, 0);
+}
+.carousel-control-prev {
+  left: 10px;
+}
+
+.carousel-control-next {
+  right: 10px;
+  background-color: rgba(100, 100, 100, 0);
+}
+
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+  background-color: $nav-pr;
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+}
+
+// footer
+
+footer {
+  height: 20vh;
+}
+
+a {
+  text-decoration: none;
+}
