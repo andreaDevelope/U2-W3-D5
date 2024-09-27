@@ -94,7 +94,7 @@ const modificaProdotto = (prodotto) => {
         const carrello = JSON.parse(localStorage.getItem("carrello")) || [];
         const index = carrello.findIndex((p) => p.id === prodotto.id);
         if (index !== -1) {
-          carrello[index] = { ...carrello[index], ...updatedProduct };
+          carrello[index] = { ...carrello[index], ...updatedProduct }; //questa è una kikka ce so andato di spread e me la flexo
           localStorage.setItem("carrello", JSON.stringify(carrello));
         }
 
@@ -117,12 +117,12 @@ const creaCardProdotto = (prodotto) => {
         <h5 class="card-title">${prodotto.name}</h5>
         <p class="card-text">${prodotto.description}</p>
         <p class="card-text"><strong>Price: €${prodotto.price}</strong></p>
-        <input type="text" id="name" placeholder="Nuovo Nome" value="${prodotto.name}" />
-        <input type="text" id="description" placeholder="Nuova Descrizione" value="${prodotto.description}" />
-        <input type="number" id="price" placeholder="Nuovo Prezzo" value="${prodotto.price}" />
-        <a href="#" id="aggiungi-carrello" class="btn btn-primary">Aggiungi al carrello</a>
-        <button id="modifica-btn" class="btn btn-warning">Modifica prodotto</button>
-        <button id="delete-btn" class="btn btn-danger">Elimina prodotto</button>
+        <input class="mb-2 p-2 rounded-2" type="text" id="name" placeholder="Nuovo Nome" value="${prodotto.name}" />
+        <input class="mb-2 p-2 rounded-2 type="text" id="description" placeholder="Nuova Descrizione" value="${prodotto.description}" />
+        <input class="mb-2 p-2 rounded-2 type="number" id="price" placeholder="Nuovo Prezzo" value="${prodotto.price}" />
+        <a href="#" id="aggiungi-carrello" class="btn btn-primary mb-2">Aggiungi al carrello</a>
+        <button id="modifica-btn" class="btn btn-warning mb-2">Modifica prodotto</button>
+        <button id="delete-btn" class="btn btn-danger mb-2">Elimina prodotto</button>
       </div>
     </div>
   `;

@@ -49,7 +49,7 @@ const aquista = (prodoctList) => {
   });
 };
 
-const changeBg = () => {
+const reload = () => {
   aquista();
   let color;
   let numRnd = Math.floor(Math.random() * 3);
@@ -64,7 +64,7 @@ const changeBg = () => {
   main.classList.add(color);
 };
 
-setInterval(changeBg, 3000);
+setInterval(reload, 3000);
 
 window.addEventListener("DOMContentLoaded", () => {
   fetch(apiUrl, {
