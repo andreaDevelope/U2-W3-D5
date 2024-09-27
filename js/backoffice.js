@@ -1,3 +1,16 @@
+const dropdownMenu = document.querySelector(".dropdown-menu-end");
+const aggiornaDropdown = (carrello) => {
+  dropdownMenu.innerHTML = "";
+
+  carrello.forEach((prodotto) => {
+    const li = document.createElement("li");
+    li.innerHTML = `
+      <a class="dropdown-item" href="#">${prodotto.name} - €${prodotto.price}</a>
+    `;
+    dropdownMenu.appendChild(li);
+  });
+};
+
 class Prodotto {
   constructor(name, description, brand, imageUrl, price) {
     this.name = name;
@@ -54,6 +67,15 @@ const changeBg = () => {
 
 setInterval(changeBg, 3000);
 
+const recuperaCarrelloDaLocalStorage = () => {
+  return JSON.parse(localStorage.getItem("carrello")) ? JSON.parse(localStorage.getItem("carrello")) : [];
+};
+
+const aggiornaCarrelloAlCaricamento = () => {
+  const carrello = recuperaCarrelloDaLocalStorage();
+  aggiornaDropdown(carrello);
+};
+
 const recuperaProdottiDalDB = (callback) => {
   fetch(apiUrl, {
     headers: {
@@ -101,6 +123,10 @@ const aggiungiProdottiAlDB = (prodotto) => {
       console.error(error);
     });
 };
+
+window.addEventListener("DOMContentLoaded", () => {
+  aggiornaCarrelloAlCaricamento();
+});
 
 form.addEventListener("submit", (e) => {
   e.preventDefault();

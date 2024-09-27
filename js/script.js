@@ -6,6 +6,27 @@ const apiKey =
 const caroselloDiv = document.getElementById("caroselloDiv");
 const dropdownMenu = document.querySelector(".dropdown-menu");
 
+const aggiornaDropdown = (carrello) => {
+  dropdownMenu.innerHTML = "";
+
+  carrello.forEach((prodotto) => {
+    const li = document.createElement("li");
+    li.innerHTML = `
+      <a class="dropdown-item" href="#">${prodotto.name} - €${prodotto.price}</a>
+    `;
+    dropdownMenu.appendChild(li);
+  });
+};
+
+const recuperaCarrelloDaLocalStorage = () => {
+  return JSON.parse(localStorage.getItem("carrello")) ? JSON.parse(localStorage.getItem("carrello")) : [];
+};
+
+const aggiornaCarrelloAlCaricamento = () => {
+  const carrello = recuperaCarrelloDaLocalStorage();
+  aggiornaDropdown(carrello);
+};
+
 const aquista = (prodoctList) => {
   prodoctList.forEach((prodotto) => {
     const prodottoImage = document.querySelector(`.carosello-image[data-id="${prodotto._id}"]`);
@@ -85,6 +106,8 @@ window.addEventListener("DOMContentLoaded", () => {
     homeLink.classList.remove("text-white");
     homeLink.classList.add("text-secondary");
   }
+
+  aggiornaCarrelloAlCaricamento();
 });
 
 caroselli.forEach((carosello) => {
