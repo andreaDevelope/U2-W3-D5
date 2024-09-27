@@ -12514,10 +12514,20 @@ textarea.form-control-lg {
     display: none !important;
   }
 }
+body {
+  font-family: "Lato", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
 @media screen and (max-width: 800px) {
   #form-nav {
     flex-grow: -1;
   }
+}
+
+h4, .h4 {
+  font-size: 2rem;
 }
 
 .col-12 img {
@@ -12543,19 +12553,15 @@ textarea.form-control-lg {
 
 .carousel-item img {
   flex: 0 0 auto;
-  width: 30%;
-  height: auto;
+  width: 400px;
+  height: 400px;
   margin-inline: 10px;
   cursor: pointer;
 }
-@media screen and (max-width: 750px) {
-  .carousel-item img {
-    width: 30%;
-  }
-}
-@media screen and (max-width: 500px) {
+@media screen and (max-width: 900px) {
   .carousel-item img {
     width: 50%;
+    height: 60%;
   }
 }
 

@@ -159,4 +159,5 @@ form.addEventListener("submit", (e) => {
   const nuovoProdotto = new Prodotto(name, description, brand, imageUrl, price);
 
   aggiungiProdottiAlDB(nuovoProdotto);
+  form.reset();
 });
