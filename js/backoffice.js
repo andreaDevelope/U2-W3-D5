@@ -126,6 +126,25 @@ const aggiungiProdottiAlDB = (prodotto) => {
 
 window.addEventListener("DOMContentLoaded", () => {
   aggiornaCarrelloAlCaricamento();
+
+  const currentPage = window.location.pathname;
+
+  const homeLink = document.getElementById("home-link");
+  const backofficeLink = document.getElementById("backoffice-link");
+
+  if (currentPage.includes("index.html")) {
+    homeLink.classList.remove("text-secondary");
+    homeLink.classList.add("text-white");
+
+    backofficeLink.classList.remove("text-white");
+    backofficeLink.classList.add("text-secondary");
+  } else if (currentPage.includes("backoffice.html")) {
+    backofficeLink.classList.remove("text-secondary");
+    backofficeLink.classList.add("text-white");
+
+    homeLink.classList.remove("text-white");
+    homeLink.classList.add("text-secondary");
+  }
 });
 
 form.addEventListener("submit", (e) => {

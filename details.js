@@ -72,6 +72,43 @@ const eliminaProdotto = (productId) => {
     });
 };
 
+const modificaProdotto = (prodotto) => {
+  const updatedProduct = {
+    name: document.querySelector("#name").value,
+    description: document.querySelector("#description").value,
+    brand: prodotto.brand,
+    imageUrl: prodotto.imageUrl,
+    price: parseFloat(document.querySelector("#price").value),
+  };
+
+  fetch(`${apiUrl}${prodotto.id}`, {
+    method: "PUT",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: apiKey,
+    },
+    body: JSON.stringify(updatedProduct),
+  })
+    .then((response) => {
+      if (response.ok) {
+        const carrello = JSON.parse(localStorage.getItem("carrello")) || [];
+        const index = carrello.findIndex((p) => p.id === prodotto.id);
+        if (index !== -1) {
+          carrello[index] = { ...carrello[index], ...updatedProduct };
+          localStorage.setItem("carrello", JSON.stringify(carrello));
+        }
+
+        alert("Prodotto modificato con successo.");
+        window.location.href = "index.html";
+      } else {
+        throw new Error("Errore durante la modifica del prodotto.");
+      }
+    })
+    .catch((error) => {
+      console.error("Errore:", error);
+    });
+};
+
 const creaCardProdotto = (prodotto) => {
   const card = `
     <div class="card" style="width: 18rem;">
@@ -80,7 +117,11 @@ const creaCardProdotto = (prodotto) => {
         <h5 class="card-title">${prodotto.name}</h5>
         <p class="card-text">${prodotto.description}</p>
         <p class="card-text"><strong>Price: €${prodotto.price}</strong></p>
+        <input type="text" id="name" placeholder="Nuovo Nome" value="${prodotto.name}" />
+        <input type="text" id="description" placeholder="Nuova Descrizione" value="${prodotto.description}" />
+        <input type="number" id="price" placeholder="Nuovo Prezzo" value="${prodotto.price}" />
         <a href="#" id="aggiungi-carrello" class="btn btn-primary">Aggiungi al carrello</a>
+        <button id="modifica-btn" class="btn btn-warning">Modifica prodotto</button>
         <button id="delete-btn" class="btn btn-danger">Elimina prodotto</button>
       </div>
     </div>
@@ -93,6 +134,9 @@ const creaCardProdotto = (prodotto) => {
 
   const deleteBtn = document.getElementById("delete-btn");
   deleteBtn.addEventListener("click", () => eliminaProdotto(prodotto.id));
+
+  const modificaBtn = document.getElementById("modifica-btn");
+  modificaBtn.addEventListener("click", () => modificaProdotto(prodotto));
 };
 
 window.addEventListener("DOMContentLoaded", () => {
