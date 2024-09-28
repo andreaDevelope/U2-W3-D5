@@ -108,8 +108,11 @@ const modificaProdotto = (prodotto) => {
         const p = document.createElement("p");
         p.innerText = "podotto modificato con successo";
         p.classList.add("text-success");
-        ul.appendChild(card);
+        card.appendChild(p);
         console.log(card);
+        setInterval(() => {
+          window.location.href = "./index.html";
+        }, 1500);
       } else {
         throw new Error("Errore durante la modifica del prodotto.");
       }
