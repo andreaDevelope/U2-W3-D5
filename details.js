@@ -61,8 +61,14 @@ const eliminaProdotto = (productId) => {
 
         aggiornaDropdown(carrello);
 
-        alert("Prodotto eliminato con successo.");
-        window.location.href = "index.html";
+        const card = document.querySelector(".card-body");
+        const p = document.createElement("p");
+        p.innerText = "podotto eliminato con successo";
+        p.classList.add("text-success");
+        card.appendChild(p);
+        setInterval(() => {
+          window.location.href = "./index.html";
+        }, 1500);
       } else {
         throw new Error("Errore durante l'eliminazione del prodotto.");
       }
@@ -98,8 +104,12 @@ const modificaProdotto = (prodotto) => {
           localStorage.setItem("carrello", JSON.stringify(carrello));
         }
 
-        alert("Prodotto modificato con successo.");
-        window.location.href = "index.html";
+        const card = document.querySelector(".card-body");
+        const p = document.createElement("p");
+        p.innerText = "podotto modificato con successo";
+        p.classList.add("text-success");
+        ul.appendChild(card);
+        console.log(card);
       } else {
         throw new Error("Errore durante la modifica del prodotto.");
       }
