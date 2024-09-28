@@ -55,20 +55,29 @@ const eliminaProdotto = (productId) => {
   })
     .then((response) => {
       if (response.ok) {
-        let carrello = JSON.parse(localStorage.getItem("carrello")) || [];
-        carrello = carrello.filter((prodotto) => prodotto.id !== productId);
-        localStorage.setItem("carrello", JSON.stringify(carrello));
-
-        aggiornaDropdown(carrello);
-
         const card = document.querySelector(".card-body");
-        const p = document.createElement("p");
-        p.innerText = "podotto eliminato con successo";
-        p.classList.add("text-success");
-        card.appendChild(p);
-        setInterval(() => {
-          window.location.href = "./index.html";
-        }, 1500);
+        card.innerHTML = `
+        <p class=" text-warning text-center">
+          vuoi davvero eliminare questo prodotto definitivamente ?
+        </p>
+        <button class="btn btn-warning" id="elimina"> ok </button>
+        `;
+        const btn = document.getElementById("elimina");
+        btn.addEventListener("click", () => {
+          let carrello = JSON.parse(localStorage.getItem("carrello")) || [];
+          carrello = carrello.filter((prodotto) => prodotto.id !== productId);
+          localStorage.setItem("carrello", JSON.stringify(carrello));
+
+          aggiornaDropdown(carrello);
+
+          const p = document.createElement("p");
+          p.innerText = "podotto eliminato con successo";
+          p.classList.add("text-success");
+          card.appendChild(p);
+          setInterval(() => {
+            window.location.href = "./index.html";
+          }, 1500);
+        });
       } else {
         throw new Error("Errore durante l'eliminazione del prodotto.");
       }
