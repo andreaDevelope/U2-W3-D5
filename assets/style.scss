@@ -65,15 +65,17 @@ h4 {
 
 .carousel-item img {
   flex: 0 0 auto;
-  width: 400px;
-  height: 400px;
+  width: 300px;
+  height: 300px;
+  object-fit: cover;
+  object-position: center;
   margin-inline: 10px;
   cursor: pointer;
 
-  // @media screen and (max-width: 750px) {
-  //   width: 30%;
-  // }
   @media screen and (max-width: 900px) {
+    width: 30%;
+  }
+  @media screen and (max-width: 650px) {
     width: 50%;
     height: 60%;
   }

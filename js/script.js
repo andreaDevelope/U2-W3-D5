@@ -49,22 +49,14 @@ const aquista = (prodoctList) => {
   });
 };
 
-const reload = () => {
-  aquista();
+const changeBg = () => {
   let color;
   let numRnd = Math.floor(Math.random() * 3);
   main.classList.remove("bg-bg-1", "bg-bg-2", "bg-bg-3");
-  if (numRnd <= 0) {
-    color = "bg-bg-1";
-  } else if (numRnd <= 1) {
-    color = "bg-bg-2";
-  } else {
-    color = "bg-bg-3";
-  }
+  color = numRnd === 0 ? "bg-bg-1" : numRnd === 1 ? "bg-bg-2" : "bg-bg-3";
   main.classList.add(color);
 };
-
-setInterval(reload, 3000);
+setInterval(changeBg, 3000);
 
 window.addEventListener("DOMContentLoaded", () => {
   fetch(apiUrl, {

@@ -1,4 +1,5 @@
 const dropdownMenu = document.querySelector(".dropdown-menu-end");
+
 const aggiornaDropdown = (carrello) => {
   dropdownMenu.innerHTML = "";
 
@@ -55,15 +56,10 @@ const changeBg = () => {
   let color;
   let numRnd = Math.floor(Math.random() * 3);
   main.classList.remove("bg-bg-1", "bg-bg-2", "bg-bg-3");
-  if (numRnd <= 0) {
-    color = "bg-bg-1";
-  } else if (numRnd <= 1) {
-    color = "bg-secondary";
-  } else {
-    color = "bg-bg-3";
-  }
+  color = numRnd === 0 ? "bg-bg-1" : numRnd === 1 ? "bg-bg-2" : "bg-bg-secondary";
   main.classList.add(color);
 };
+setInterval(changeBg, 3000);
 
 setInterval(changeBg, 3000);
 
