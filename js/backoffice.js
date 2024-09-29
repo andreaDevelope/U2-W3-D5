@@ -56,7 +56,7 @@ const changeBg = () => {
   let color;
   let numRnd = Math.floor(Math.random() * 3);
   main.classList.remove("bg-bg-1", "bg-bg-2", "bg-bg-3");
-  color = numRnd === 0 ? "bg-bg-1" : numRnd === 1 ? "bg-bg-2" : "bg-bg-secondary";
+  color = numRnd === 0 ? "bg-bg-1" : numRnd === 1 ? "bg-secondary" : "bg-bg-3";
   main.classList.add(color);
 };
 setInterval(changeBg, 3000);
@@ -105,6 +105,15 @@ const aggiungiProdottiAlDB = (prodotto) => {
   })
     .then((response) => {
       if (response.ok) {
+        const form = document.querySelector("main form");
+        const p = document.createElement("p");
+        p.innerText = "podotto aggiunto con successo";
+        p.classList.add("text-white");
+        form.appendChild(p);
+        console.log(form);
+        setInterval(() => {
+          window.location.href = "./index.html";
+        }, 1500);
         return response.json();
       } else {
         return response.text().then((text) => {
